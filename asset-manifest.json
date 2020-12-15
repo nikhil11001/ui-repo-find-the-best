@@ -1,25 +1,26 @@
 {
   "files": {
     "main.css": "/ui-repo-find-the-best/static/css/main.ab7136cd.chunk.css",
-    "main.js": "/ui-repo-find-the-best/static/js/main.d944b7d4.chunk.js",
-    "main.js.map": "/ui-repo-find-the-best/static/js/main.d944b7d4.chunk.js.map",
-    "runtime-main.js": "/ui-repo-find-the-best/static/js/runtime-main.c5ec9505.js",
-    "runtime-main.js.map": "/ui-repo-find-the-best/static/js/runtime-main.c5ec9505.js.map",
+    "main.js": "/ui-repo-find-the-best/static/js/main.834e849a.chunk.js",
+    "main.js.map": "/ui-repo-find-the-best/static/js/main.834e849a.chunk.js.map",
+    "runtime-main.js": "/ui-repo-find-the-best/static/js/runtime-main.90a19260.js",
+    "runtime-main.js.map": "/ui-repo-find-the-best/static/js/runtime-main.90a19260.js.map",
     "static/css/2.20aa2d7b.chunk.css": "/ui-repo-find-the-best/static/css/2.20aa2d7b.chunk.css",
-    "static/js/2.56a52f12.chunk.js": "/ui-repo-find-the-best/static/js/2.56a52f12.chunk.js",
-    "static/js/2.56a52f12.chunk.js.map": "/ui-repo-find-the-best/static/js/2.56a52f12.chunk.js.map",
-    "static/js/3.99e55f89.chunk.js": "/ui-repo-find-the-best/static/js/3.99e55f89.chunk.js",
-    "static/js/3.99e55f89.chunk.js.map": "/ui-repo-find-the-best/static/js/3.99e55f89.chunk.js.map",
+    "static/js/2.a720eb18.chunk.js": "/ui-repo-find-the-best/static/js/2.a720eb18.chunk.js",
+    "static/js/2.a720eb18.chunk.js.map": "/ui-repo-find-the-best/static/js/2.a720eb18.chunk.js.map",
+    "static/js/3.45212865.chunk.js": "/ui-repo-find-the-best/static/js/3.45212865.chunk.js",
+    "static/js/3.45212865.chunk.js.map": "/ui-repo-find-the-best/static/js/3.45212865.chunk.js.map",
     "index.html": "/ui-repo-find-the-best/index.html",
     "static/css/2.20aa2d7b.chunk.css.map": "/ui-repo-find-the-best/static/css/2.20aa2d7b.chunk.css.map",
     "static/css/main.ab7136cd.chunk.css.map": "/ui-repo-find-the-best/static/css/main.ab7136cd.chunk.css.map",
-    "static/js/2.56a52f12.chunk.js.LICENSE.txt": "/ui-repo-find-the-best/static/js/2.56a52f12.chunk.js.LICENSE.txt"
+    "static/js/2.a720eb18.chunk.js.LICENSE.txt": "/ui-repo-find-the-best/static/js/2.a720eb18.chunk.js.LICENSE.txt",
+    "static/media/shop.6852ff85.png": "/ui-repo-find-the-best/static/media/shop.6852ff85.png"
   },
   "entrypoints": [
-    "static/js/runtime-main.c5ec9505.js",
+    "static/js/runtime-main.90a19260.js",
     "static/css/2.20aa2d7b.chunk.css",
-    "static/js/2.56a52f12.chunk.js",
+    "static/js/2.a720eb18.chunk.js",
     "static/css/main.ab7136cd.chunk.css",
-    "static/js/main.d944b7d4.chunk.js"
+    "static/js/main.834e849a.chunk.js"
   ]
 }
