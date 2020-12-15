@@ -2,19 +2,169 @@ import React from "react";
 import './App.css';
 import {
   Button, Navbar, Nav, NavDropdown, Form, FormControl,
-  Row, Col, Image,Badge
+  Row, Col, Image, Badge, ButtonToolbar, ButtonGroup
 } from "react-bootstrap";
 
+import image from "./images/shop.png"
 
 class App extends React.Component {
   constructor(prop) {
     super(prop)
     this.state = {
-      location: "",
-      checkInDate: "",
-      checkedOutDate: ""
+      locationName: "",
+      hotelName: "",
+      productName: "",
+      searchResult: [],
+      sellingPartnerList:[],
+      hotelData: [
+        {
+          name: "Hotel 1",
+          info: "Situated in Chakan’s industrial area, on the northern outskirts of Pune, the eco-friendly Courtyard by Marriott Pune Chakan takes pride in its modern fitness centre.",
+          rating: "Excellent 9",
+          price: "Rs.120",
+          location: "Pimpari",
+          product: "Paneer Tikka",
+          image,
+          sellingPartner: [
+            {
+              name: "Uber Eats",
+              price: "Rs.100",
+            },
+            {
+              name: "Zomato",
+              price: "Rs.80",
+            },
+            {
+              name: "Food Panda",
+              price: "Rs.90",
+            }
+          ]
+        },
+        {
+          name: "Hotel 2",
+          info: "Situated in Chakan’s industrial area, on the northern outskirts of Pune, the eco-friendly Courtyard by Marriott Pune Chakan takes pride in its modern fitness centre.",
+          rating: "Excellent 9",
+          price: "Rs.130",
+          location: "Pimpari",
+          product: "Paneer Tikka",
+          image,
+          sellingPartner: [
+            {
+              name: "Uber Eats",
+              price: "Rs.100",
+            },
+            {
+              name: "Zomato",
+              price: "Rs.80",
+            },
+            {
+              name: "Food Panda",
+              price: "Rs.90",
+            }
+          ]
+        },
+
+        {
+          name: "Hotel 3",
+          info: "Situated in Chakan’s industrial area, on the northern outskirts of Pune, the eco-friendly Courtyard by Marriott Pune Chakan takes pride in its modern fitness centre.",
+          rating: "Excellent 9",
+          price: "Rs.220",
+          location: "Deccan",
+          product: "Veg Pulav",
+          image,
+          sellingPartner: [
+            {
+              name: "Uber Eats",
+              price: "Rs.100",
+            },
+            {
+              name: "Zomato",
+              price: "Rs.80",
+            },
+            {
+              name: "Food Panda",
+              price: "Rs.90",
+            }
+          ]
+        },
+
+        {
+          name: "Hotel 4",
+          info: "Situated in Chakan’s industrial area, on the northern outskirts of Pune, the eco-friendly Courtyard by Marriott Pune Chakan takes pride in its modern fitness centre.",
+          rating: "Excellent 9",
+          price: "Rs.200",
+          location: "Deccan",
+          product: "Veg Pulav",
+          image,
+          sellingPartner: [
+            {
+              name: "Uber Eats",
+              price: "Rs.100",
+            },
+            {
+              name: "Zomato",
+              price: "Rs.80",
+            },
+            {
+              name: "Food Panda",
+              price: "Rs.90",
+            }
+          ]
+        },
+
+        {
+          name: "Hotel 5",
+          info: "Situated in Chakan’s industrial area, on the northern outskirts of Pune, the eco-friendly Courtyard by Marriott Pune Chakan takes pride in its modern fitness centre.",
+          rating: "Excellent 9",
+          price: "Rs.190",
+          location: "FC Road",
+          product: "Chicken Biryani",
+          image,
+          sellingPartner: [
+            {
+              name: "Uber Eats",
+              price: "Rs.100",
+            },
+            {
+              name: "Zomato",
+              price: "Rs.80",
+            },
+            {
+              name: "Food Panda",
+              price: "Rs.90",
+            }
+          ]
+        },
+
+        {
+          name: "Hotel 6",
+          info: "Situated in Chakan’s industrial area, on the northern outskirts of Pune, the eco-friendly Courtyard by Marriott Pune Chakan takes pride in its modern fitness centre.",
+          rating: "Excellent 9",
+          price: "Rs.210",
+          location: "FC Road",
+          product: "Chicken Biryani",
+          image,
+          sellingPartner: [
+            {
+              name: "Uber Eats",
+              price: "Rs.100",
+            },
+            {
+              name: "Zomato",
+              price: "Rs.80",
+            },
+            {
+              name: "Food Panda",
+              price: "Rs.90",
+            }
+          ]
+        }
+
+      ]
     }
   }
+
+
 
   handleChange = (value, fieldName) => {
     if (fieldName == "location") {
@@ -25,6 +175,43 @@ class App extends React.Component {
       this.setState({ checkedOutDate: value })
     }
   }
+
+  resetFilters = () => {
+    this.setState({
+      locationName: "",
+      hotelName: "",
+      productName: ""
+    }, () => {
+      console.log("state--->", this.state)
+    })
+  }
+
+  handleSearch = () => {
+    const { locationName, productName, hotelName, hotelData } = this.state;
+    let searchResult = hotelData.filter((item) => {
+      return (item.name === hotelName || item.location === locationName || item.product === productName)
+    })
+    console.log("searchRsult--->", searchResult)
+    this.setState({ searchResult })
+  }
+
+  getSellingPartner=()=>{
+    let sellingPartnerList=[];
+   let result=this.state.hotelData.filter((obj)=>{
+      return obj.name===this.state.hotelName
+   }) 
+  
+  if(result.length >0){
+    sellingPartnerList=result[0].sellingPartner.map((obj)=>{
+      return (
+      <div>{`${obj.name} :  ${obj.price}`}</div>
+      );
+  })
+  }
+  
+  this.setState ({sellingPartnerList});
+  }
+
   render() {
     return (
       <div className="App-Container">
@@ -51,90 +238,102 @@ class App extends React.Component {
         </Navbar>
         <div style={{ marginTop: "54px", marginLeft: "124px", marginRight: "70px" }}>
           <Row>
-            <Col md={11}>
+            <Col md={10}>
               <Row>
                 <Col md={3}>
-                  <input type="text" className="form-control" placeholder="Enter Location" value={this.state.location} onChange={(e) => { this.handleChange(e.target.value, "location") }} />
+                  <Form.Group controlId="exampleForm.ControlSelect1">
+                    <Form.Label>Location</Form.Label>
+                    <Form.Control as="select"
+                      value={this.state.locationName}
+                      onChange={(e) => { this.setState({ locationName: e.target.value }) }}>
+                      <option>Select Location</option>
+                      <option>Pimpari</option>
+                      <option>Deccan</option>
+                      <option>FC Road</option>
+                    </Form.Control>
+                  </Form.Group>
                 </Col>
                 <Col md={3}>
-                  <input type="text" className="form-control" placeholder="Check In" value={this.state.checkInDate} onChange={(e) => { this.handleChange(e.target.value, "checkedInDate") }} />
+                  <Form.Group controlId="exampleForm.ControlSelect1">
+                    <Form.Label>Hotel</Form.Label>
+                    <Form.Control as="select"
+                      value={this.state.hotelName}
+                      onChange={(e) => { this.setState({ hotelName: e.target.value }) }}>
+                      <option>Select Hotel</option>
+                      <option>Hotel 1</option>
+                      <option>Hotel 2</option>
+                      <option>Hotel 3</option>
+                      <option>Hotel 4</option>
+                      <option>Hotel 5</option>
+                      <option>Hotel 6</option>
+                    </Form.Control>
+                  </Form.Group>
                 </Col>
                 <Col md={3}>
-                  <input type="text" className="form-control" placeholder="Check Out" value={this.state.checkedOutDate} onChange={(e) => { this.handleChange(e.target.value, "checkedOutDate") }} />
+                  <Form.Group controlId="exampleForm.ControlSelect1">
+                    <Form.Label>Product</Form.Label>
+                    <Form.Control as="select"
+                      value={this.state.productName}
+                      onChange={(e) => { this.setState({ productName: e.target.value }) }}>
+                      <option>Select Product</option>
+                      <option>Panner Tikka</option>
+                      <option>Veg Pulav</option>
+                      <option>Chicken Biryani</option>
+                    </Form.Control>
+                  </Form.Group>
                 </Col>
-                <Col md={3}>
-                  <input type="text" className="form-control" placeholder="No. Of Guests" value={this.state.checkedOutDate} onChange={(e) => { this.handleChange(e.target.value, "checkedOutDate") }} />
-                </Col>
+
               </Row>
             </Col>
-            <Col md={1}>
-              <Button>Search</Button>
+            <Col md={2} style={{ marginTop: "34px" }}>
+              <ButtonToolbar aria-label="Toolbar with button groups">
+                <ButtonGroup className="mr-2" aria-label="First group">
+                  <Button onClick={() => { this.handleSearch() }}> Search</Button>
+                </ButtonGroup>
+                <ButtonGroup className="mr-2" aria-label="Second group">
+                  <Button onClick={() => { this.resetFilters() }}>Reset</Button>
+                </ButtonGroup>
+              </ButtonToolbar>
             </Col>
           </Row>
         </div>
-        <div style={{marginLeft:"76px",marginRight:"76px",marginTop:"50px"}}>
-          <Row>
-            <Col md={2}>
-              <Image src="https://imgcy.trivago.com/c_lfill,d_dummy.jpeg,e_sharpen:60,f_auto,h_225,q_auto,w_225/itemimages/27/36/2736906_v4.jpeg" thumbnail />
-            </Col>
-            <Col md={3}>
-              <h4>Courtyard by Marriott,Pune</h4>
-              <p>26.0 km to City centre</p>
-              <div>
-                <Button variant="primary">
-                  Excellent <Badge variant="light">9</Badge>
-                  <span className="sr-only">unread messages</span>
-                </Button>
-               
-              </div>
-              <div style={{marginTop:"30px"}}>
-                <h5>Info</h5>
-                <p>
-                Situated in Chakan’s industrial area, on the northern outskirts of Pune, the eco-friendly Courtyard by Marriott Pune Chakan takes pride in its modern fitness centre, outdoor lap pool, 24-hour restaurant, and outdoor/indoor game zones. Furnished with featherbed mattresses, the upscale rooms are fully air-conditioned. Standard amenities include satellite TVs, safes, fridges, iPod docks, ergonomic desks, and free signature toiletries. Suites with separate living areas and pet-friendly rooms are also available.
-                </p>
-              </div>
-            </Col>
-            <Col md={1}>
-              <h4>Rs. 6615</h4>
-            </Col>
-            <Col md={2}>
-            <Button variant="success">
-                  View Details
-                </Button>
-            </Col>
-          </Row>
+        <div style={{ marginLeft: "76px", marginRight: "76px", marginTop: "50px" }}>
+          {
+            this.state.searchResult.map((obj) => {
+              return (
+                <Row>
+                  <Col md={2}>
+                    <Image src={obj.image} thumbnail />
+                  </Col>
+                  <Col md={2}>
+                    <h4>{obj.name}</h4>
+                    <div>
+                      <Button variant="primary">
+                        <Badge variant="light">{obj.rating}</Badge>
+                        <span className="sr-only">unread messages</span>
+                      </Button>
 
-          <Row style={{marginTop:"30px"}}>
-            <Col md={2}>
-              <Image src="https://imgcy.trivago.com/c_lfill,d_dummy.jpeg,e_sharpen:60,f_auto,h_225,q_auto,w_225/itemimages/27/36/2736906_v4.jpeg" thumbnail />
-            </Col>
-            <Col md={3}>
-              <h4>Courtyard by Marriott,Pune</h4>
-              <p>26.0 km to City centre</p>
-              <div>
-                <Button variant="primary">
-                  Excellent <Badge variant="light">9</Badge>
-                  <span className="sr-only">unread messages</span>
-                </Button>
-               
-              </div>
-              <div style={{marginTop:"30px"}}>
-                <h5>Info</h5>
-                <p>
-                Situated in Chakan’s industrial area, on the northern outskirts of Pune, the eco-friendly Courtyard by Marriott Pune Chakan takes pride in its modern fitness centre, outdoor lap pool, 24-hour restaurant, and outdoor/indoor game zones. Furnished with featherbed mattresses, the upscale rooms are fully air-conditioned. Standard amenities include satellite TVs, safes, fridges, iPod docks, ergonomic desks, and free signature toiletries. Suites with separate living areas and pet-friendly rooms are also available.
-                </p>
-              </div>
-            </Col>
-            <Col md={1}>
-              <h4>Rs. 6615</h4>
-            </Col>
-            <Col md={2}>
-            <Button variant="success">
-                  View Details
-                </Button>
-            </Col>
-          </Row>
-          
+                    </div>
+                    <div style={{ marginTop: "30px" }}>
+                      <h5>Info</h5>
+                      <p>
+                        {obj.info}
+                      </p>
+                    </div>
+                  </Col>
+                  <Col md={2}>
+                    <h4>{this.state.hotelName && this.state.sellingPartnerList.length >0 ?this.getSellingPartner() :obj.price}</h4>
+                  </Col>
+                  <Col md={2}>
+                    <Button variant="success">
+                      View Details
+                    </Button>
+                  </Col>
+                </Row>
+
+              );
+            })
+          }
         </div>
       </div>
     );
