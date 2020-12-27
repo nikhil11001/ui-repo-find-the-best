@@ -2,10 +2,15 @@ import React from "react";
 import './App.css';
 import {
   Button, Navbar, Nav, NavDropdown, Form, FormControl,
-  Row, Col, Image, Badge, ButtonToolbar, ButtonGroup
+  Row, Col, Image, Badge, ButtonToolbar, ButtonGroup,Jumbotron                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              
 } from "react-bootstrap";
 
-import image from "./images/shop.png"
+import image from "./images/shop.png";
+import uberEat from "./images/uber_eat.png";
+import zomato from "./images/zomato_icon.png";
+import foodPanda from "./images/food_panda_icon.png";
+import foodSerachIcon1 from "./images/search.png";
+import foodSerachIcon2 from "./images/food.png";
 
 class App extends React.Component {
   constructor(prop) {
@@ -180,7 +185,8 @@ class App extends React.Component {
     this.setState({
       locationName: "",
       hotelName: "",
-      productName: ""
+      productName: "",
+      searchResult:[]
     }, () => {
       console.log("state--->", this.state)
     })
@@ -192,24 +198,33 @@ class App extends React.Component {
       return (item.name === hotelName || item.location === locationName || item.product === productName)
     })
     console.log("searchRsult--->", searchResult)
-    this.setState({ searchResult })
+    let result=this.state.hotelData.filter((obj)=>{
+       return obj.name===this.state.hotelName
+    }) 
+    this.setState({ searchResult,sellingPartnerList:result })
+  }
+
+
+  getImage=(name)=>{
+    let src="";
+    if(name==="Uber Eats"){
+      src=uberEat;
+    }else if(name==="Food Panda"){
+      src=foodPanda;
+    }else if(name==="Zomato"){
+      src=zomato;
+    }
+    return  <Image src={src} roundedCircle fluid className="max-width-50"/>
   }
 
   getSellingPartner=()=>{
-    let sellingPartnerList=[];
-   let result=this.state.hotelData.filter((obj)=>{
-      return obj.name===this.state.hotelName
-   }) 
-  
-  if(result.length >0){
-    sellingPartnerList=result[0].sellingPartner.map((obj)=>{
+  if(this.state.sellingPartnerList.length >0){
+   return( this.state.sellingPartnerList[0].sellingPartner.map((obj)=>{
       return (
-      <div>{`${obj.name} :  ${obj.price}`}</div>
+      <div style={{marginBottom:"20px"}}>{this.getImage(obj.name)}{` ${obj.price}`}</div>
       );
-  })
+  }))
   }
-  
-  this.setState ({sellingPartnerList});
   }
 
   render() {
@@ -297,15 +312,20 @@ class App extends React.Component {
             </Col>
           </Row>
         </div>
+       
         <div style={{ marginLeft: "76px", marginRight: "76px", marginTop: "50px" }}>
+        {this.state.searchResult.length>0 ?<Jumbotron>
           {
             this.state.searchResult.map((obj) => {
               return (
+                <>
                 <Row>
+                  <Col md={6}>
+                    <Row>
                   <Col md={2}>
                     <Image src={obj.image} thumbnail />
                   </Col>
-                  <Col md={2}>
+                  <Col md={6}>
                     <h4>{obj.name}</h4>
                     <div>
                       <Button variant="primary">
@@ -321,20 +341,36 @@ class App extends React.Component {
                       </p>
                     </div>
                   </Col>
-                  <Col md={2}>
-                    <h4>{this.state.hotelName && this.state.sellingPartnerList.length >0 ?this.getSellingPartner() :obj.price}</h4>
+                  </Row>
                   </Col>
-                  <Col md={2}>
+
+                  <Col md={6}>
+                    <Row>
+                  <Col md={4}>
+                    <h4>{this.state.hotelName ?this.getSellingPartner() :obj.price}</h4>
+                  </Col>
+                  <Col md={8}>
                     <Button variant="success">
                       View Details
                     </Button>
                   </Col>
+                  </Row>
+                  </Col>
                 </Row>
-
+              <hr/>
+              </>
               );
             })
           }
-        </div>
+          </Jumbotron> : 
+          <Jumbotron>
+            <Image src={foodSerachIcon1} rounded width={"20%"} style={{marginLeft:"40%"}}/>
+            <h1 className="text-center">Find Out Best Food</h1>
+          </Jumbotron>
+          }
+        </div>:
+      
+        
       </div>
     );
   }
