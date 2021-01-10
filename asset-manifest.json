@@ -1,29 +1,29 @@
 {
   "files": {
     "main.css": "/ui-repo-find-the-best/static/css/main.18588fc8.chunk.css",
-    "main.js": "/ui-repo-find-the-best/static/js/main.f0a26737.chunk.js",
-    "main.js.map": "/ui-repo-find-the-best/static/js/main.f0a26737.chunk.js.map",
-    "runtime-main.js": "/ui-repo-find-the-best/static/js/runtime-main.1015e160.js",
-    "runtime-main.js.map": "/ui-repo-find-the-best/static/js/runtime-main.1015e160.js.map",
+    "main.js": "/ui-repo-find-the-best/static/js/main.5240dcb2.chunk.js",
+    "main.js.map": "/ui-repo-find-the-best/static/js/main.5240dcb2.chunk.js.map",
+    "runtime-main.js": "/ui-repo-find-the-best/static/js/runtime-main.b59489e2.js",
+    "runtime-main.js.map": "/ui-repo-find-the-best/static/js/runtime-main.b59489e2.js.map",
     "static/css/2.20aa2d7b.chunk.css": "/ui-repo-find-the-best/static/css/2.20aa2d7b.chunk.css",
-    "static/js/2.90ce2013.chunk.js": "/ui-repo-find-the-best/static/js/2.90ce2013.chunk.js",
-    "static/js/2.90ce2013.chunk.js.map": "/ui-repo-find-the-best/static/js/2.90ce2013.chunk.js.map",
-    "static/js/3.3dc168a9.chunk.js": "/ui-repo-find-the-best/static/js/3.3dc168a9.chunk.js",
-    "static/js/3.3dc168a9.chunk.js.map": "/ui-repo-find-the-best/static/js/3.3dc168a9.chunk.js.map",
+    "static/js/2.ff58eb67.chunk.js": "/ui-repo-find-the-best/static/js/2.ff58eb67.chunk.js",
+    "static/js/2.ff58eb67.chunk.js.map": "/ui-repo-find-the-best/static/js/2.ff58eb67.chunk.js.map",
+    "static/js/3.e302149a.chunk.js": "/ui-repo-find-the-best/static/js/3.e302149a.chunk.js",
+    "static/js/3.e302149a.chunk.js.map": "/ui-repo-find-the-best/static/js/3.e302149a.chunk.js.map",
     "index.html": "/ui-repo-find-the-best/index.html",
     "static/css/2.20aa2d7b.chunk.css.map": "/ui-repo-find-the-best/static/css/2.20aa2d7b.chunk.css.map",
     "static/css/main.18588fc8.chunk.css.map": "/ui-repo-find-the-best/static/css/main.18588fc8.chunk.css.map",
-    "static/js/2.90ce2013.chunk.js.LICENSE.txt": "/ui-repo-find-the-best/static/js/2.90ce2013.chunk.js.LICENSE.txt",
+    "static/js/2.ff58eb67.chunk.js.LICENSE.txt": "/ui-repo-find-the-best/static/js/2.ff58eb67.chunk.js.LICENSE.txt",
     "static/media/food.1d71b903.png": "/ui-repo-find-the-best/static/media/food.1d71b903.png",
     "static/media/food_panda_icon.3417b5be.png": "/ui-repo-find-the-best/static/media/food_panda_icon.3417b5be.png",
     "static/media/search.cee309f0.png": "/ui-repo-find-the-best/static/media/search.cee309f0.png",
     "static/media/shop.6852ff85.png": "/ui-repo-find-the-best/static/media/shop.6852ff85.png"
   },
   "entrypoints": [
-    "static/js/runtime-main.1015e160.js",
+    "static/js/runtime-main.b59489e2.js",
     "static/css/2.20aa2d7b.chunk.css",
-    "static/js/2.90ce2013.chunk.js",
+    "static/js/2.ff58eb67.chunk.js",
     "static/css/main.18588fc8.chunk.css",
-    "static/js/main.f0a26737.chunk.js"
+    "static/js/main.5240dcb2.chunk.js"
   ]
 }
