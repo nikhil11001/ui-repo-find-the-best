@@ -34,15 +34,18 @@ class App extends React.Component {
           sellingPartner: [
             {
               name: "Uber Eats",
-              price: "Rs.100",
+              price: "",
+              originalPrice: 100,
             },
             {
               name: "Zomato",
-              price: "Rs.80",
+              price: "",
+              originalPrice: 80
             },
             {
               name: "Food Panda",
-              price: "Rs.90",
+              price: "",
+              originalPrice: 70,
             }
           ],
           quantity: ""
@@ -58,15 +61,18 @@ class App extends React.Component {
           sellingPartner: [
             {
               name: "Uber Eats",
-              price: "Rs.100",
+              price: "",
+              originalPrice: 100,
             },
             {
               name: "Zomato",
-              price: "Rs.80",
+              price: "",
+              originalPrice: 50,
             },
             {
               name: "Food Panda",
-              price: "Rs.90",
+              price: "",
+              originalPrice: 40,
             }
           ],
           quantity: ""
@@ -83,15 +89,18 @@ class App extends React.Component {
           sellingPartner: [
             {
               name: "Uber Eats",
-              price: "Rs.100",
+              price: "",
+              originalPrice: 200,
             },
             {
               name: "Zomato",
-              price: "Rs.80",
+              price: "",
+              originalPrice: 100,
             },
             {
               name: "Food Panda",
-              price: "Rs.90",
+              price: "",
+              originalPrice: 80,
             }
           ],
           quantity: ""
@@ -108,15 +117,18 @@ class App extends React.Component {
           sellingPartner: [
             {
               name: "Uber Eats",
-              price: "Rs.100",
+              price: "",
+              originalPrice: 150,
             },
             {
               name: "Zomato",
-              price: "Rs.80",
+              price: "",
+              originalPrice: 90,
             },
             {
               name: "Food Panda",
-              price: "Rs.90",
+              price: "",
+              originalPrice: 70,
             }
           ],
           quantity: ""
@@ -133,15 +145,18 @@ class App extends React.Component {
           sellingPartner: [
             {
               name: "Uber Eats",
-              price: "Rs.100",
+              price: "",
+              originalPrice: 400,
             },
             {
               name: "Zomato",
-              price: "Rs.80",
+              price: "",
+              originalPrice: 200,
             },
             {
               name: "Food Panda",
-              price: "Rs.90",
+              price: "",
+              originalPrice: 150,
             }
           ],
           quantity: ""
@@ -158,15 +173,18 @@ class App extends React.Component {
           sellingPartner: [
             {
               name: "Uber Eats",
-              price: "Rs.100",
+              price: "",
+              originalPrice: 400,
             },
             {
               name: "Zomato",
-              price: "Rs.80",
+              price: "",
+              originalPrice: 350,
             },
             {
               name: "Food Panda",
-              price: "Rs.90",
+              price: "",
+              originalPrice: 100,
             }
           ],
           quantity: ""
@@ -189,11 +207,25 @@ class App extends React.Component {
   }
 
   resetFilters = () => {
+    let { hotelData } = this.state;
+    hotelData.map((hotelObj) =>  {
+      return (
+        hotelObj.quantity = "",
+        hotelObj.sellingPartner.map((partnerObj) => {
+          return (
+            partnerObj.price = ""
+          );
+        })
+      );
+
+    });
     this.setState({
       locationName: "",
       hotelName: "",
       productName: "",
-      searchResult: []
+      searchResult: [],
+      sellingPartnerList: [],
+      hotelData
     }, () => {
       console.log("state--->", this.state)
     })
@@ -225,11 +257,11 @@ class App extends React.Component {
     return <Image src={src} roundedCircle fluid className="max-width-50" />
   }
 
-  getSellingPartner = () => {
-    if (this.state.sellingPartnerList.length > 0) {
-      return (this.state.sellingPartnerList[0].sellingPartner.map((obj) => {
+  getSellingPartner = (obj) => {
+    if (obj.sellingPartner.length > 0) {
+      return (obj.sellingPartner.map((item) => {
         return (
-          <div style={{ marginBottom: "20px" }}>{this.getImage(obj.name)}{` ${obj.price}`}</div>
+          <div style={{ marginBottom: "20px" }}>{this.getImage(item.name)}{`${obj.quantity === "" || obj.quantity == 1 || obj.quantity == 0 ? item.originalPrice : parseInt(obj.quantity) * item.originalPrice}`}</div>
         );
       }))
     }
@@ -240,16 +272,22 @@ class App extends React.Component {
     let arr = [...this.state.searchResult]
     arr.map((item, index) => {
       if (index == selectedIndex) {
-        item.quantity = val
+        item.quantity = val;
+        item.sellingPartner.map(obj => (
+          obj.price = obj.originalPrice * item.quantity
+        ))
       }
-
     })
+   
     this.setState({ searchResult: arr })
-    console.table(this.state.searchResult)
+    console.log(this.state.searchResult)
+    console.log(this.state.searchResult[0].sellingPartner)
+    console.log(this.state.searchResult[1].sellingPartner)
   }
 
 
   render() {
+    console.log("Render-->", this.props.name)
     return (
       <div className="App-Container">
         <Navbar bg="light" expand="lg">
@@ -355,7 +393,7 @@ class App extends React.Component {
                                   <h3>Product:{obj.product}</h3>
                                 </div>
                                 <div style={{ marginLeft: "26px" }}>
-                                  <input type="number" value={obj.quantity} className="form-control" onChange={(e) => { this.updateQuantity(e.target.value, index) }} />
+                                  <input type="number" value={obj.quantity} className="form-control" min={0} onChange={(e) => { this.updateQuantity(e.target.value, index) }} />
                                 </div>
                               </div>
                             </div>
@@ -372,7 +410,7 @@ class App extends React.Component {
                       <Col md={6}>
                         <Row>
                           <Col md={4}>
-                            <h4>{this.state.hotelName ? this.getSellingPartner() : obj.price}</h4>
+                            <h4>{this.state.hotelName ? this.getSellingPartner(obj) : obj.price}</h4>
                           </Col>
                           <Col md={8}>
                             <Button variant="success">
